@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="email_template_birthday" model="mail.template">
+        <field name="name">Birthday Congrats Email</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="subject">Happy Birthday in Advance, {{ object.name }}!</field>
+        <field name="email_from">{{ object.company_id.email }}</field>
+        <field name="email_to">{{ object.email }}</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>Dear <t t-out="object.name"/>,</p>
+                <p>We would like to take a moment to wish you a very Happy Birthday in advance!</p>
+                <p t-if="object.birth_date">Congratulations on turning <t t-out="(int(datetime.datetime.now().year) - int(object.birth_date.year))"/> years old!</p>
+                <p>Have a fantastic day filled with joy and happiness.</p>
+                <p>Best Regards,</p>
+                <p>Your Team</p>
+            </div>
+        </field>
+    </record>
+</odoo>

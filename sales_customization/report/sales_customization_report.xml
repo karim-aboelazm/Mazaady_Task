@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//div[hasclass('page')]/table" position="before">
+                <div class="row mt-4 mb-2" id="discount_informations">
+                    <div t-if="doc.discount_amount > 0" class="col-auto col-3 mw-100 mb-2" name="discount_informations_reference">
+                        <strong>Discount Amount:</strong><br/>
+                        <span t-field="doc.discount_amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/>
+                    </div>
+                    <div t-if="doc.total_amount_after_discount > 0" class="col-auto col-3 mw-100 mb-2" name="discount_informations_date">
+                        <strong>Total After Discount:</strong><br/>
+                        <span t-field="doc.total_amount_after_discount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>
